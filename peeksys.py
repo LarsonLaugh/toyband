@@ -3,7 +3,7 @@ import os
 import sys
 
 import pandas as pd
-from toybands.functions import pretty_print
+from functions import pretty_print
 
 def peek():
     my_parser = argparse.ArgumentParser(

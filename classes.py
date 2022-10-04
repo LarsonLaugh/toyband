@@ -10,8 +10,8 @@ import pandas as pd
 from functools import reduce
 
 from physconst import *
-from toybands.functions import *
-from toybands.config import DEFAULT_AUTONAME,DEFAULT_PATH
+from functions import *
+from config import DEFAULT_AUTONAME,DEFAULT_PATH
 
 
 class Band:

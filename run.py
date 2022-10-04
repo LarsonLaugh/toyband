@@ -11,10 +11,10 @@ from datetime import datetime
 
 from physconst import e0
 from utils import flattenList, div
-from toybands.functions import *
-from toybands.classes import *
-from toybands.plottools import (make_n_colors, make_1d_E_B_plots, make_1d_den_B_plots, make_1d_dos_B_plot, make_2d_dos_map, super_save, make_slices,make_canvas,draw_band)
-from toybands.config import *
+from functions import *
+from classes import *
+from plottools import (make_n_colors, make_1d_E_B_plots, make_1d_den_B_plots, make_1d_dos_B_plot, make_2d_dos_map, super_save, make_slices,make_canvas,draw_band)
+from config import *
 
 def multi_floats(value):
     values = value.split()

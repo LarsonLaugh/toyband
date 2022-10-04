@@ -12,7 +12,7 @@ from functools import reduce
 from scipy.integrate import quad
 
 from physconst import *
-from toybands.config import DEFAULT_PATH, DEFAULT_AUTONAME
+from config import DEFAULT_PATH, DEFAULT_AUTONAME
 
 def lldirac_gen(B, B_perp, N, is_cond, gfactor, vf, dparam):
     """Calculate the energy of Landau level in Dirac dispersion with a Zeeman term
@@ -28,10 +28,8 @@ def lldirac_gen(B, B_perp, N, is_cond, gfactor, vf, dparam):
     Return:
     Energy (IU)
     """
-    if N < 0 or not isinstance(N, int):
-        raise ValueError(f"your input N = {N} should be an integer no less than zero")
-    if gfactor < 0:
-        raise ValueError(f"your input gfactor = {gfactor} <0")
+    if not isinstance(N, int):
+        raise ValueError(f"your input N = {N} should be an integer")
     alpha = 1 if is_cond else -1
     return (
         alpha
@@ -149,7 +147,7 @@ def e_density_of_state(E, B, sigma, angle_in_deg, e_lls, compensate_on=False):
             for e_ll in e_lls
         ],
     )
-    return output-compensate if compensate_on else output 
+    return output-compensate if compensate_on else output
 
 
 def h_density_of_state(E, B, sigma, angle_in_deg, h_lls, compensate_on=False):

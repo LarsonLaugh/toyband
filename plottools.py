@@ -10,8 +10,8 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 from physconst import *
 from utils import flattenList, div
-from toybands.functions import extract_list,add_list, extents, mkdir
-from toybands.config import *
+from functions import extract_list,add_list, extents, mkdir
+from config import *
 
 
 def make_n_colors(n,cmap,vstart,vend):

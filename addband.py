@@ -2,8 +2,8 @@ import argparse
 import os
 import sys
 
-from toybands.functions import *
-from toybands.classes import *
+from functions import *
+from classes import *
 
 
 def addband():

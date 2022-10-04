@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from toybands.plottools import plot_from_csv
+from plottools import plot_from_csv
 
 def plotcsv():
     my_parser = argparse.ArgumentParser(
