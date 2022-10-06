@@ -23,9 +23,9 @@ The electronic property, i.e., the band structure (Energy versus momentum) of ma
 - It is highly recommended to use `virtualenv` to generate an enviroment for this project. Consult Google if not sure how to do this. 
 ### Command line interface CLI
 - If you are the first time to use a CLI:
-	Use a teminal (powershell, gitbash for Win user) and switch current directory to `cd ..\SciData>` and start the command with `python` to invoke your python program and the `toybands` module follows. 
-	An example is `..\SciData> python toybands/xxx.py`.  To access a brief help doc, just add argument `-h` by the end like `python toybands/addband.py -h`. As of now, I will introduce the CLI and its usage, covering common scenarios. Note that you can always interrupt the script by `Ctrl+C` but nothing will be saved after this interruption.
-- else: Go to `SciData\` directory.
+	Use a teminal (powershell, gitbash for Win user) and switch current directory to `cd ..\toyband>` and start the command with `python` to invoke your python program and the `toybands` module follows. 
+	An example is `..\toyband> python xxx.py`.  To access a brief help doc, just add argument `-h` by the end like `python toybands/addband.py -h`. As of now, I will introduce the CLI and its usage, covering common scenarios. Note that you can always interrupt the script by `Ctrl+C` but nothing will be saved after this interruption.
+- else: Go to `toyband\` directory.
  ### How to use in examples
  Note that `[]` means a "must", `{}` means optional, and `[{case1},{case2}]` means one of them must exist. All the arguments can be in any order within the command line. 
  - add a band to the system

@@ -35,5 +35,5 @@ plt.rc("legend", fontsize=20)
 plt.rcParams['figure.constrained_layout.use'] = True
 
 # model settings
-SIGMA_COND = 1e-3*e0
-SIGMA_VAL = 3e-4*e0
+SIGMA_COND = 1e-3*e0 # in units of eV
+SIGMA_VAL = 3e-4*e0 # in units of eV
