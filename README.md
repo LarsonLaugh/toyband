@@ -1,36 +1,35 @@
  # Table of Contents
-[Project Overview](#project-overview)
+[Overview](#overview)
 
-[Prerequisites](#prerequisites)
+[Software prerequisites](#software-prerequisites)
 
 [Main tasks](#main-tasks)
 
 [Command-line-interface CLI](#command-line-interface-CLI)
 
-[Usage Examples below](#usage-examples-below)
+[How to use in examples](#how-to-use-in-examples)
 
-[Module introduction](#module-introduction)
+[Introduction to modules](#introduction-to-modules)
 
 [Features in the future](#features-in-the-future)
 
-### Project Overview
-This **toybands** model allows one to get some fundamentals of quantum Hall effect and Landau levels in high magnetic field if you happens to have some Dirac or non-Dirac materials, which trends in condensed matter physics in the past ten years or so. 
-You can use some parameters as inputs to describe the properties of electron system of your materials in a simplified form (Fermi velocity, spin projection in the magnetic field direction, effective mass, etc).  In the end, you are enabled to carry out multiple tasks with this model, like plotting the Landau levels in energy or monitoring the effect of density change in Landau levels as the magnetic field ramps. The output will be stored in a separate folder for later check-out. 
-All the physics behind is explained in a separate documentation  [[Physics here]]. 
+### Overview
+This **toyband** model is to provide some insights into Landau fans observed in electronic materials under strong magnetic fields.
+The electronic property, i.e., the band structure (Energy versus momentum) of materials can be defined and is assumed to be isotropic for simplicity. 
 
-### Prerequisites
+### Software prerequisites
 - Install Python package (v3.8.7 recommended)
 - Pip install dependencies list in requirements.txt `pip install -r requirements.txt`
 - It is highly recommended to use `virtualenv` to generate an enviroment for this project. Consult Google if not sure how to do this. 
 ### Command line interface CLI
 - If you are the first time to use a CLI:
-	Use a teminal (powershell, gitbash for Win user) and switch current directory to `cd ..\SciData>` and start the command with `python` to invoke your python program and the `toybands` module follows. 
-	An example is `..\SciData> python toybands/xxx.py`.  To access a brief help doc, just add argument `-h` by the end like `python toybands/addband.py -h`. As of now, I will introduce the CLI and its usage, covering common scenarios. Note that you can always interrupt the script by `Ctrl+C` but nothing will be saved after this interruption.
-- else: Go to `SciData\` directory.
- ### Usage (Examples below)
+	Use a teminal (powershell, gitbash for Win user) and switch current directory to `cd ..\toyband>` and start the command with `python` to invoke your python program and the `toybands` module follows. 
+	An example is `..\toyband> python xxx.py`.  To access a brief help doc, just add argument `-h` by the end like `python toybands/addband.py -h`. As of now, I will introduce the CLI and its usage, covering common scenarios. Note that you can always interrupt the script by `Ctrl+C` but nothing will be saved after this interruption.
+- else: Go to `toyband\` directory.
+ ### How to use in examples
  Note that `[]` means a "must", `{}` means optional, and `[{case1},{case2}]` means one of them must exist. All the arguments can be in any order within the command line. 
  - add a band to the system
- `python toybands/addband.py [-density] {-is_dirac} {-is_cond} [-gfactor GFACTOR] [{-dp MASS VF} {-cp MEFF SPIN}]` 
+ `python toybands/addband.py [-density] {-is_dirac} {-is_cond} [-gfactor GFACTOR] [{-dp VF D} {-cp MEFF SPIN}]` 
  - delete band(s) from the system without UI (useful when you run a script)
  `python toybands/delband.py [-i INDEX or all]`
  using UI `python toybands/delband.py`
@@ -44,7 +43,7 @@ All the physics behind is explained in a separate documentation  [[Physics here]
  `python toybands/run.py [-simu] [--allden "NS1 NE1 NS2 NE2 ..."] [-nos NOS] {-dir DIR} {-fnm FNM} [--enrange Estart Eend Enum] [--bfrange Bstart Bend Bnum] {-nmax NMAX} {-angle ANGLE}`
 
  	Alternatively, one can load densitites stored in columns of a csv file (no header) elsewhere like:
- `python toybands/run.py [-simu] [--loadden path-to-csvfile] {-dir DIR} {-fnm FNM} [--enrange Estart Eend Enum] [--bfrange Bstart Bend Bnum] {-nmax NMAX} {-angle ANGLE}`
+ `python toybands/run.py [-simu] [-loadden path-to-csvfile] {-dir DIR} {-fnm FNM} [--enrange Estart Eend Enum] [--bfrange Bstart Bend Bnum] {-nmax NMAX} {-angle ANGLE}`
  - plot the DOS-B relationship at a fixed chemical potential
  `python toybands/run.py [-dos] {-dir DIR} {-fnm FNM} [--enrange Estart Eend Enum] [--bfrange Bstart Bend Bnum] {-nmax NMAX} {-angle ANGLE}`
  - plot the DOS mapping onto (n,B) for a set of given densities
@@ -52,7 +51,7 @@ All the physics behind is explained in a separate documentation  [[Physics here]
  - plot the data from csv file directly from the CLI
  `python toybands/plotfile.py [-f path-to-csvfile]`
  
-### Advanced settings
+### Default settings
 You can change many of default settings in IO(path, save), plotting and some model parameters (no need to change most of time) in `toymodel/config.py`.
 
 ### Main tasks
@@ -68,43 +67,52 @@ You can change many of default settings in IO(path, save), plotting and some mod
 	- plot the n-B relation of Landau levels at the chemical potential to show the simulation of experimentally obtained Landau fan chart
 	- map the density of state (DOS) at each (B,n)
 - replot the results stored in csv file(`plotfile.py`)
-### Module introduction
+### Introduction to modules
+
 ##### module `addband` 
 `python toybands/addband.py [-option][parameters]`
-- `density`: positional, density for this band in unit 1/m2
-- `-is_cond`: optional, conduction (present)/valence (absent) band
+Add a new band into the system
+
+- `density`: positional, density for this band in units of 1/m^2
+- `-is_cond`: optional, is a conduction band
 - `-gfactor`: optional, gfactor for this band
-- `-dp DP1 DP2`: optional, DP1: M (eV) DP2: vf(m/s) for a Dirac-like band. M is the mass term for massive Dirac dispersion. For M=0, it represents for the massless Dirac dispersion
-- `-cp CP1 CP2`: optional, CP1: meff (me) CP2: spin (+1/-1/0) for a conventional band. meff is the effective mass in unit of the rest mass of electron, spin stands for spin-up (+1), spin-down (-1) and spinless (0) cases.
-- Initialization of a system:
-A system will be initiated at the same time its first band is created.
+- `-dp DP1 DP2`: DP1: fermi velocity (in units of m/s) DP2: D (meV nm^2) for a Dirac-like band. D(kx^2+ky^2) accounts for the deviation from a linear Dirac dispersion.
+- `-cp CP1 CP2`: CP1: absolute value of effective mass (in units of rest mass of electron) CP2: spin number (+1 or -1 or 0) for a conventional band. The spin number stands for spin-up (+1), spin-down (-1) and spinless (0), respectively.
+- Initialize a system: A system will be automatically initiated upon the creation of the first band.
 
 	
 #####  module `peeksys`
+`python peaksys.py`
 Peek into the system you created
- Once you'd like to see what is in your system, how many bands and their parameters, simply type: `python toybands/peaksys.py`.  It will print out a summary of bands in table-like format.
+
+ Once you'd like to see what is in your system, how many bands and their parameters. The above command will print out a summary of bands in table-like format.
 
  ##### module `delband`
- Remove bands from a system
+`python toybands/delband.py`
+Remove bands from a system
 
- This can be done by `python toybands/delband.py`. It will prompt a dialogue `which band to delete? Input the index number: Or press 'e' to exit`. Type the number in front of all the parameters within a row for that band you want to delete. Or quit by typing `e`.  In some cases, you need to delete bands in multiple-line scipts, then just using `python toybands/delband.py -i [INDEX or all]`  'all' will let you empty the system. 
+It will prompt a dialogue `which band to delete? Input the index number: Or press 'e' to exit`. Type the number in front of all the parameters within a row for that band you want to delete. Or quit by typing `e`.  In some cases, you need to delete bands in multiple-line scipts, then just using `python toybands/delband.py -i [INDEX or all]`  'all' will let you empty the system. 
  
  ##### module `run`
  `python toybands/run.py [-option][parameters]`
- - `-enplot`: optional, plot the energy versus bfield (yes/no)
- - `-denplot`: optional, plot the density versus bfield (yes/no)
+Carry out various tasks in the existing material system.
+
+ - `--enrange`: energy range: start end NumofPoints
+ - `--bfrange`: magnetic field range: start end NumofPoints
+ - `-enplot`: optional, plot the energy versus bfield
+ - `-denplot`: optional, plot the density versus bfield
  - `-simu`: optional, dynamically generate relationship between the density and the bfield at steps of input density (yes/no)
- - `-dosm`:optional, mapping of DOS onto (n,B) (yes/no)
- - `-dos`: optional, plot dos versus bfield (yes/no)
+ - `-dosm`:optional, mapping of DOS onto (n,B)
+ - `-dos`: optional, plot dos versus bfield
  - `--allden`: optional, densities for each band: start1 end1 start2 end2 ...
  - `-nos`: optional, number of steps in the simulation
  - `-dir`: optional, relative output directory
  - `-fnm`: optional, filename
- - `--enrange`: optional, energy range: start end numofpoints
- - `--bfrange`: optional, magnetic field range: start end numofpoints
- - `-nmax`: optional, number of Landau levels involved (default=20)
+ - `-nmax`: optional, number of Landau levels to be considered (default=20)
  - `-angle`: optional, angle in degree made with the sample plane norm by the external field (default=0)
-
+ - `-scond`: optional, set Landau level broadening parameter sigma at B = 1 T for conduction bands.  
+ - `-sval`: optional, set Landau level broadening parameter sigma at B = 1 T for valence bands.
+ - `-zll`: optional, reduce the density of state (DOS) of zero LLs to its half compared to other LLs.
 
  ### Features in the future
  - Input customized E-B relationship [*]

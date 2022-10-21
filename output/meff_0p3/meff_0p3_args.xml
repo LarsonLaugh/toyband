@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <data>
   <time>
-    <ymd name="yyyy/mm/dd">2022/10/05</ymd>
-    <hms name="hh/mm/ss">15:13:21</hms>
+    <ymd name="yyyy/mm/dd">2022/10/04</ymd>
+    <hms name="hh/mm/ss">23:23:06</hms>
   </time>
   <configs>
     <sigma_cond name="SIGMA_COND">1.6021766208000002e-22</sigma_cond>
@@ -18,10 +18,10 @@
     <arg name="loadden">density4band.csv</arg>
     <arg name="nos">None</arg>
     <arg name="dir">None</arg>
-    <arg name="fnm">None</arg>
-    <arg name="enrange">[-0.05, 0.1, 50.0]</arg>
-    <arg name="bfrange">None</arg>
-    <arg name="nmax">20</arg>
+    <arg name="fnm">meff_0p3</arg>
+    <arg name="enrange">[-0.05, 0.1, 10.0]</arg>
+    <arg name="bfrange">[1.0, 7.0, 60.0]</arg>
+    <arg name="nmax">10</arg>
     <arg name="angle">0</arg>
     <arg name="scond">None</arg>
     <arg name="sval">None</arg>

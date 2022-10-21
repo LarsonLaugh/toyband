@@ -2,26 +2,26 @@
 <data>
   <time>
     <ymd name="yyyy/mm/dd">2022/10/05</ymd>
-    <hms name="hh/mm/ss">15:13:21</hms>
+    <hms name="hh/mm/ss">15:22:28</hms>
   </time>
   <configs>
     <sigma_cond name="SIGMA_COND">1.6021766208000002e-22</sigma_cond>
     <sigma_val name="SIGMA_VAL">4.8065298624e-23</sigma_val>
   </configs>
   <args>
-    <arg name="enplot">False</arg>
+    <arg name="enplot">True</arg>
     <arg name="denplot">False</arg>
-    <arg name="simu">True</arg>
+    <arg name="simu">False</arg>
     <arg name="dos">False</arg>
     <arg name="dosm">False</arg>
     <arg name="allden">None</arg>
-    <arg name="loadden">density4band.csv</arg>
+    <arg name="loadden">None</arg>
     <arg name="nos">None</arg>
     <arg name="dir">None</arg>
-    <arg name="fnm">None</arg>
+    <arg name="fnm">En_vs_B</arg>
     <arg name="enrange">[-0.05, 0.1, 50.0]</arg>
-    <arg name="bfrange">None</arg>
-    <arg name="nmax">20</arg>
+    <arg name="bfrange">[0.0, 16.0, 100.0]</arg>
+    <arg name="nmax">10</arg>
     <arg name="angle">0</arg>
     <arg name="scond">None</arg>
     <arg name="sval">None</arg>
