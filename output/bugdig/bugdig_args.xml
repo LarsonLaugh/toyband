@@ -2,7 +2,7 @@
 <data>
   <time>
     <ymd name="yyyy/mm/dd">2023/02/28</ymd>
-    <hms name="hh/mm/ss">20:58:06</hms>
+    <hms name="hh/mm/ss">21:01:11</hms>
   </time>
   <configs>
     <sigma_cond name="SIGMA_COND">1.6021766208000002e-22</sigma_cond>
@@ -18,9 +18,9 @@
     <arg name="loadden">density4band.csv</arg>
     <arg name="nos">None</arg>
     <arg name="dir">None</arg>
-    <arg name="fnm">None</arg>
-    <arg name="enrange">[-0.05, 0.05, 10.0]</arg>
-    <arg name="bfrange">[0.0, 7.0, 10.0]</arg>
+    <arg name="fnm">bugdig</arg>
+    <arg name="enrange">[-0.05, 0.05, 5.0]</arg>
+    <arg name="bfrange">[0.0, 7.0, 5.0]</arg>
     <arg name="nmax">20</arg>
     <arg name="angle">0</arg>
     <arg name="scond">None</arg>
