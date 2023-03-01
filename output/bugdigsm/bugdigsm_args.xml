@@ -2,7 +2,7 @@
 <data>
   <time>
     <ymd name="yyyy/mm/dd">2023/02/28</ymd>
-    <hms name="hh/mm/ss">21:47:43</hms>
+    <hms name="hh/mm/ss">21:37:25</hms>
   </time>
   <configs>
     <sigma_cond name="SIGMA_COND">1.6021766208000002e-22</sigma_cond>
@@ -11,15 +11,15 @@
   <args>
     <arg name="enplot">False</arg>
     <arg name="denplot">False</arg>
-    <arg name="simu">False</arg>
+    <arg name="simu">True</arg>
     <arg name="dos">False</arg>
-    <arg name="dosm">True</arg>
+    <arg name="dosm">False</arg>
     <arg name="allden">None</arg>
     <arg name="loadden">density4band.csv</arg>
     <arg name="nos">None</arg>
     <arg name="dir">None</arg>
-    <arg name="fnm">bugdig</arg>
-    <arg name="enrange">[-0.005, 0.005, 20.0]</arg>
+    <arg name="fnm">bugdigsm</arg>
+    <arg name="enrange">[-0.01, 0.01, 20.0]</arg>
     <arg name="bfrange">[0.0, 7.0, 20.0]</arg>
     <arg name="nmax">5</arg>
     <arg name="angle">0</arg>
