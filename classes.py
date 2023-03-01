@@ -188,7 +188,7 @@ class Band:
                 )
                 for N in range(Nmax)
             ]
-            return h_density_of_state(E, B, sigma, angle_in_deg, h_lls,compensate_on=dirac_parity)
+            return h_density_of_state(E, B, sigma, angle_in_deg, h_lls, compensate_on=dirac_parity)
         elif not self.is_dirac and self.is_cond:
             e_lls = [
                 self.Ebb
@@ -203,7 +203,7 @@ class Band:
                 )
                 for N in range(Nmax)
             ]
-            return e_density_of_state(E, B, sigma, angle_in_deg, e_lls,compensate_on=False)
+            return e_density_of_state(E, B, sigma, angle_in_deg, e_lls, compensate_on=False)
         elif not self.is_dirac and not self.is_cond:
             h_lls = [
                 self.Ebb
