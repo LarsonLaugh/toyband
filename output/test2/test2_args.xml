@@ -2,7 +2,7 @@
 <data>
   <time>
     <ymd name="yyyy/mm/dd">2023/03/02</ymd>
-    <hms name="hh/mm/ss">08:14:17</hms>
+    <hms name="hh/mm/ss">14:01:58</hms>
   </time>
   <configs>
     <sigma_cond name="SIGMA_COND">1.6021766208000002e-22</sigma_cond>
@@ -12,19 +12,19 @@
     <arg name="enplot">False</arg>
     <arg name="denplot">False</arg>
     <arg name="simu">False</arg>
-    <arg name="dos">True</arg>
-    <arg name="dosm">False</arg>
+    <arg name="dos">False</arg>
+    <arg name="dosm">True</arg>
     <arg name="allden">None</arg>
-    <arg name="loadden">None</arg>
+    <arg name="loadden">test2.csv</arg>
     <arg name="nos">None</arg>
     <arg name="dir">None</arg>
     <arg name="fnm">test2</arg>
-    <arg name="enrange">[-0.2, 0.2, 100.0]</arg>
-    <arg name="bfrange">[1.0, 7.0, 100.0]</arg>
-    <arg name="nmax">20</arg>
+    <arg name="enrange">[-0.02, 0.02, 20.0]</arg>
+    <arg name="bfrange">[1.0, 7.0, 50.0]</arg>
+    <arg name="nmax">10</arg>
     <arg name="angle">0</arg>
     <arg name="scond">None</arg>
-    <arg name="sval">None</arg>
+    <arg name="sval">0.5</arg>
     <arg name="zll">False</arg>
   </args>
 </data>
