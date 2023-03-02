@@ -1,24 +1,24 @@
 <?xml version="1.0" ?>
 <data>
   <time>
-    <ymd name="yyyy/mm/dd">2023/03/01</ymd>
-    <hms name="hh/mm/ss">21:35:13</hms>
+    <ymd name="yyyy/mm/dd">2023/03/02</ymd>
+    <hms name="hh/mm/ss">08:16:26</hms>
   </time>
   <configs>
     <sigma_cond name="SIGMA_COND">1.6021766208000002e-22</sigma_cond>
     <sigma_val name="SIGMA_VAL">4.8065298624e-23</sigma_val>
   </configs>
   <args>
-    <arg name="enplot">True</arg>
+    <arg name="enplot">False</arg>
     <arg name="denplot">False</arg>
     <arg name="simu">False</arg>
-    <arg name="dos">False</arg>
+    <arg name="dos">True</arg>
     <arg name="dosm">False</arg>
     <arg name="allden">None</arg>
     <arg name="loadden">None</arg>
     <arg name="nos">None</arg>
     <arg name="dir">None</arg>
-    <arg name="fnm">None</arg>
+    <arg name="fnm">test3</arg>
     <arg name="enrange">[-0.2, 0.2, 100.0]</arg>
     <arg name="bfrange">[1.0, 7.0, 100.0]</arg>
     <arg name="nmax">20</arg>

@@ -315,7 +315,7 @@ class System:
     def mu(self, e_list, B, Nmax, angle_in_deg, sigma_list,dirac_parity=True):
         return np.interp(
             x=self.tot_density(),
-            xp=self.dos_gen(e_list, B, Nmax, angle_in_deg, sigma_list,dirac_parity),
+            xp=self.dos_gen (e_list, B, Nmax, angle_in_deg, sigma_list,dirac_parity),
             fp=e_list,
         )
     def databdl_write_csv(self,filename,bfrange,y_databdl,indicator,plotrange=None):
