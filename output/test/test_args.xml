@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <data>
   <time>
-    <ymd name="yyyy/mm/dd">2023/03/02</ymd>
-    <hms name="hh/mm/ss">13:49:28</hms>
+    <ymd name="yyyy/mm/dd">2023/03/06</ymd>
+    <hms name="hh/mm/ss">11:28:11</hms>
   </time>
   <configs>
     <sigma_cond name="SIGMA_COND">1.6021766208000002e-22</sigma_cond>
@@ -15,16 +15,16 @@
     <arg name="dos">False</arg>
     <arg name="dosm">True</arg>
     <arg name="allden">None</arg>
-    <arg name="loadden">test2.csv</arg>
+    <arg name="loadden">test.csv</arg>
     <arg name="nos">None</arg>
     <arg name="dir">None</arg>
     <arg name="fnm">test</arg>
-    <arg name="enrange">[-0.2, 0.2, 20.0]</arg>
-    <arg name="bfrange">[1.0, 7.0, 50.0]</arg>
+    <arg name="enrange">[-0.05, 0.1, 25.0]</arg>
+    <arg name="bfrange">[1.0, 7.0, 25.0]</arg>
     <arg name="nmax">10</arg>
     <arg name="angle">0</arg>
     <arg name="scond">None</arg>
-    <arg name="sval">0.5</arg>
+    <arg name="sval">None</arg>
     <arg name="zll">False</arg>
   </args>
 </data>
