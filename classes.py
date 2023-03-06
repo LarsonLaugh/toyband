@@ -255,12 +255,13 @@ class System:
             num_active_band = len(self.bands)
             sys.stderr.write(f'The number of active bands {num_active_band} does not match up with the input densities {len(den_list)}\n')
         for band,den in zip(self.bands,den_list):
-            if abs(den) > 1e5: # only consider band with considerable density in our system to avoid interference due to
-                # some bad consequence of finite broadening of Landau levels.
-                band.enable()
-                band.set_den(abs(den))
-            else:
-                band.disable()
+            band.set_den(abs(den))
+            # if abs(den) > 1e5: # only consider band with considerable density in our system to avoid interference due to
+            #     # some bad consequence of finite broadening of Landau levels.
+            #     band.enable()
+            #     band.set_den(abs(den))
+            # else:
+            #     band.disable()
 
     
     def get_band(self,band):
@@ -320,7 +321,6 @@ class System:
             )
 
     def mu(self, e_list, B, Nmax, angle_in_deg, sigma_list, dirac_parity=True):
-
         return np.interp(
             x=self.tot_density(),
             xp=self.dos_gen (e_list, B, Nmax, angle_in_deg, sigma_list,dirac_parity),

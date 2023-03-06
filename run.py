@@ -254,10 +254,10 @@ def dos_map(args,newsystem,bfrange,enrange,cmap=None):
             # disable the band with zero density or below
             idx_disabled = []
             # if any band has a density <=0 then disable it
-            for idx,den in enumerate(den_slice):
-                if den <= 0:
-                    newsystem.get_band(idx).disable()
-                    idx_disabled.append(idx)
+            # for idx,den in enumerate(den_slice):
+            #     if den <= 0:
+            #         newsystem.get_band(idx).disable()
+            #         idx_disabled.append(idx)
             # calculate the chemical potential for the new system        
             mus = [newsystem.mu(enrange, B, args.nmax, args.angle, [SIGMA_COND if band.get('is_cond') else SIGMA_VAL for band in newsystem.get_band('a')],args.zll) for B in bfrange]
             # calculate the dos for each band at each chemical potential along the B field axis
@@ -265,9 +265,9 @@ def dos_map(args,newsystem,bfrange,enrange,cmap=None):
             y_databdl.append(to_append)
             newsystem.databdl_write_csv(args.fnm,bfrange,to_append,'dosm')
             # enable the disabled band again for next loop
-            if idx_disabled:
-                for idx in idx_disabled:
-                    newsystem.get_band(idx).enable()
+            # if idx_disabled:
+            #     for idx in idx_disabled:
+            #         newsystem.get_band(idx).enable()
         make_2d_dos_map(bfrange,y_tot,y_databdl,cmap,ax=ax)
         system_stamp_csv(args)
         super_save(args.fnm,args.dir)

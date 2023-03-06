@@ -302,3 +302,23 @@ def mkdir(fnm):
     if not os.path.isdir(path):
         os.makedirs(path)
     return path
+
+def checkLin(y,tolerance=0.01):
+    # check if y evolves in a linear manner.
+    # if the deviation of y variation from a linear dependence
+    # exceeds 1\pm tolerance (limits), then return rejection (False)
+    tolerance = abs(tolerance)
+    length = len(y)
+    linearDiff = (y[0]-y[-1])/(length-1)
+    index = 0
+    while index < length-1:
+        index += 1
+        if  abs(y[index - 1] - y[index]) > abs(linearDiff) * (1 + tolerance)\
+            or abs(y[index - 1] - y[index]) < abs(linearDiff)* (1 - tolerance):
+            return False
+    return True
+
+
+
+
+
