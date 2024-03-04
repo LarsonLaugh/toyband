@@ -16,6 +16,7 @@
 ### Overview
 This **toyband** model is to provide some insights into Landau fans observed in electronic materials under strong magnetic fields.
 The electronic property, i.e., the band structure (Energy versus momentum) of materials can be defined and is assumed to be isotropic for simplicity. 
+To dive deeper, please visit [my personal website](http://lixianphwang.com/projects/3_project/).
 
 ### Software prerequisites
 - Install Python package (v3.8.7 recommended)
