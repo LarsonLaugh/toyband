@@ -10,9 +10,11 @@ import pandas as pd
 from scipy.interpolate import interp1d
 from functools import reduce
 
-from physconst import *
-from functions import *
-from config import DEFAULT_AUTONAME,DEFAULT_PATH
+from .physconst import *
+from .functions import *
+from .config import DEFAULT_AUTONAME,DEFAULT_PATH
+
+__all__ = ['Band','System']
 
 
 class Band:

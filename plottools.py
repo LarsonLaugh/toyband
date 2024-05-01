@@ -13,6 +13,9 @@ from utils import flattenList, div
 from functions import extract_list,add_list, extents, mkdir
 from config import *
 
+__all__ = ['make_n_colors','make_1d_E_B_plots','make_1d_den_B_plots',
+           'make_2d_dos_map','draw_band','plot_from_csv','make_canvas',
+           'super_save','pdf_save','make_slices']
 
 def make_n_colors(n,cmap,vstart,vend):
     if not isinstance(n,int):
