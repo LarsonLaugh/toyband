@@ -12,6 +12,12 @@ from scipy.integrate import quad
 from physconst import *
 from config import DEFAULT_PATH, DEFAULT_AUTONAME
 
+
+__all__ = ['lldirac_gen','llconv_gen','den2en','e_density_of_state',
+           'h_density_of_state','e_idos_gen','h_idos_gen',
+           'add_list','extract_list','pretty_print','system_stamp_csv',
+           'read_den_from_csv','extents','et_pretty','mkdir']
+
 def lldirac_gen(B, B_perp, N, is_cond, gfactor, vf, dparam):
     """Calculate the energy of Landau level in Dirac dispersion with a Zeeman term
     Arguments:
@@ -60,7 +66,10 @@ def den2en(density,is_dirac,is_cond,vf,dparam,meff):
         elif is_dirac and not is_cond:
             return hbar * vf * (4 * np.pi * density) ** 0.5+4*dparam*np.pi*density
         elif not is_dirac and is_cond:
-            return -2*(hbar ** 2) * density/ np.pi / meff/ me # the factor of 2 is to account for spin non-degenerate case, so if you have a spin-degenerate band, just write it into two spin-split band filled half of the carrier density.
+            return -2*(hbar ** 2) * density/ np.pi / meff/ me
+            # the factor of 2 is to account for spin non-degenerate case,
+            # so if you have a spin-degenerate band, just write it into two spin-split
+            # band filled half of the carrier density.
         elif not is_dirac and not is_cond:
             return 2*(hbar ** 2) * density / np.pi / meff/ me
 
@@ -83,7 +92,7 @@ def _e_integral(func, ymin, y_list, args):
             result = quad(func, y - yint, y, args=args)[0]
         elif y <= ymin:
             result = 0
-        else:
+        else:# only case left: ymin < y <= ymin+yint
             result = quad(func, ymin, y, args=args)[0]
         result = result + prev_result
         prev_result = result
@@ -299,3 +308,23 @@ def mkdir(fnm):
     if not os.path.isdir(path):
         os.makedirs(path)
     return path
+
+def checkLin(y,tolerance=0.01):
+    # check if y evolves in a linear manner.
+    # if the deviation of y variation from a linear dependence
+    # exceeds 1\pm tolerance (limits), then return rejection (False)
+    tolerance = abs(tolerance)
+    length = len(y)
+    linearDiff = (y[0]-y[-1])/(length-1)
+    index = 0
+    while index < length-1:
+        index += 1
+        if  abs(y[index - 1] - y[index]) > abs(linearDiff) * (1 + tolerance)\
+            or abs(y[index - 1] - y[index]) < abs(linearDiff)* (1 - tolerance):
+            return False
+    return True
+
+
+
+
+

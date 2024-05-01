@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<data>
+  <time>
+    <ymd name="yyyy/mm/dd">2023/03/06</ymd>
+    <hms name="hh/mm/ss">14:26:20</hms>
+  </time>
+  <configs>
+    <sigma_cond name="SIGMA_COND">1.6021766208000002e-22</sigma_cond>
+    <sigma_val name="SIGMA_VAL">4.8065298624e-23</sigma_val>
+  </configs>
+  <args>
+    <arg name="enplot">False</arg>
+    <arg name="denplot">False</arg>
+    <arg name="simu">False</arg>
+    <arg name="dos">False</arg>
+    <arg name="dosm">True</arg>
+    <arg name="allden">None</arg>
+    <arg name="loadden">test.csv</arg>
+    <arg name="nos">None</arg>
+    <arg name="dir">None</arg>
+    <arg name="fnm">test5</arg>
+    <arg name="enrange">[-0.05, 0.05, 40.0]</arg>
+    <arg name="bfrange">[1.0, 5.0, 200.0]</arg>
+    <arg name="nmax">10</arg>
+    <arg name="angle">0</arg>
+    <arg name="scond">None</arg>
+    <arg name="sval">None</arg>
+    <arg name="zll">True</arg>
+  </args>
+</data>

@@ -7,11 +7,14 @@ import warnings
 
 import numpy as np
 import pandas as pd
+from scipy.interpolate import interp1d
 from functools import reduce
 
-from physconst import *
-from functions import *
-from config import DEFAULT_AUTONAME,DEFAULT_PATH
+from .physconst import *
+from .functions import *
+from .config import DEFAULT_AUTONAME,DEFAULT_PATH
+
+__all__ = ['Band','System']
 
 
 class Band:
@@ -32,7 +35,7 @@ class Band:
             return self.__dict__.get(attr)
         else:
             sys.stderr.write(f'{attr} is not an attribute for Band. Use density,is_cond,is_dirac,M,vf,meff,spin instead\n')
-    def set_den(self,value):
+    def set_den(self, value):
         if not isinstance(value,(int,float)):
             sys.stderr.write(f'value need to be a number\n')
         self.density = value
@@ -188,7 +191,7 @@ class Band:
                 )
                 for N in range(Nmax)
             ]
-            return h_density_of_state(E, B, sigma, angle_in_deg, h_lls,compensate_on=dirac_parity)
+            return h_density_of_state(E, B, sigma, angle_in_deg, h_lls, compensate_on=dirac_parity)
         elif not self.is_dirac and self.is_cond:
             e_lls = [
                 self.Ebb
@@ -203,7 +206,7 @@ class Band:
                 )
                 for N in range(Nmax)
             ]
-            return e_density_of_state(E, B, sigma, angle_in_deg, e_lls,compensate_on=False)
+            return e_density_of_state(E, B, sigma, angle_in_deg, e_lls, compensate_on=False)
         elif not self.is_dirac and not self.is_cond:
             h_lls = [
                 self.Ebb
@@ -255,6 +258,13 @@ class System:
             sys.stderr.write(f'The number of active bands {num_active_band} does not match up with the input densities {len(den_list)}\n')
         for band,den in zip(self.bands,den_list):
             band.set_den(abs(den))
+            # if abs(den) > 1e5: # only consider band with considerable density in our system to avoid interference due to
+            #     # some bad consequence of finite broadening of Landau levels.
+            #     band.enable()
+            #     band.set_den(abs(den))
+            # else:
+            #     band.disable()
+
     
     def get_band(self,band):
         if len(self.bands) == 0:
@@ -312,12 +322,17 @@ class System:
                 ],
             )
 
-    def mu(self, e_list, B, Nmax, angle_in_deg, sigma_list,dirac_parity=True):
+    def mu(self, e_list, B, Nmax, angle_in_deg, sigma_list, dirac_parity=True):
         return np.interp(
             x=self.tot_density(),
-            xp=self.dos_gen(e_list, B, Nmax, angle_in_deg, sigma_list,dirac_parity),
+            xp=self.dos_gen (e_list, B, Nmax, angle_in_deg, sigma_list,dirac_parity),
             fp=e_list,
         )
+        # return interp1d(
+        #     x = self.dos_gen(e_list, B, Nmax, angle_in_deg, sigma_list, dirac_parity),
+        #     y = e_list,
+        #     kind = 'linear',
+        # )(self.tot_density())
     def databdl_write_csv(self,filename,bfrange,y_databdl,indicator,plotrange=None):
         if filename is None:
             filename = DEFAULT_AUTONAME
@@ -406,11 +421,17 @@ class System:
             [
                 [
                     np.interp(x=x, xp=enrange, fp=IDOS[index])
+                    # interp1d(
+                    #     x=enrange,
+                    #     y=IDOS[index],
+                    #     kind='linear',
+                    # )(x)
                     for index, x in enumerate(
                         band.cal_energy(bfrange, nmax, angle_in_deg)[
                             f"#{N}"
                         ].tolist()
                     )
+
                 ]
                 for N in range(nmax)
             ]

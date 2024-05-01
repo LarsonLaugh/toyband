@@ -198,22 +198,23 @@ def simu(args,newsystem,bfrange,enrange,colors = None):
             tot_den = newsystem.tot_density()
             IDOS = [newsystem.dos_gen(enrange, B, args.nmax, args.angle, [SIGMA_COND if band.get('is_cond') else SIGMA_VAL for band in newsystem.get_band('a')],args.zll) for B in bfrange]
             # disable the band with zero density
-            idx_disabled = []
+            # idx_disabled = []
             # if any band has a density <=0 then disable it
-            for idx,den in enumerate(den_slice):
-                if den <= 0:
-                    newsystem.get_band(idx).disable()
-                    idx_disabled.append(idx)
-                    colors_p[idx] = None
-            colors_p = [color for color in colors_p if color is not None]
-            y_databdl = [[[np.interp(x=x, xp=enrange, fp=IDOS[index]) for index, x in enumerate(band.cal_energy(bfrange,args.nmax,args.angle)[f'#{N}'].tolist())] for N in range(args.nmax)] for band in newsystem.get_band('a')]
+            # for idx,den in enumerate(den_slice):
+            #     if den <= 0:
+            #         newsystem.get_band(idx).disable()
+            #         idx_disabled.append(idx)
+            #         colors_p[idx] = None
+            # colors_p = [color for color in colors_p if color is not None]
+            y_databdl = [[[np.interp(x=x, xp=enrange, fp=IDOS[index]) for index, x in enumerate(band.cal_energy(bfrange,args.nmax,args.angle)[f'#{N}'].tolist())]
+                          for N in range(args.nmax)] for band in newsystem.get_band('a')]
             plotrange = [tot_den-0.5*tot_den_int,tot_den+0.5*tot_den_int]
             ax = make_1d_den_B_plots(bfrange,y_databdl,colors_p,ax=ax,plotrange=plotrange,legend=False)
             newsystem.databdl_write_csv(args.fnm,bfrange,y_databdl,'simu',plotrange=plotrange)
             # enable the disabled band again for next loop
-            if idx_disabled:
-                for idx in idx_disabled:
-                    newsystem.get_band(idx).enable()
+            # if idx_disabled:
+            #     for idx in idx_disabled:
+            #         newsystem.get_band(idx).enable()
         system_stamp_csv(args)    
         super_save(args.fnm,args.dir)
 
@@ -252,12 +253,12 @@ def dos_map(args,newsystem,bfrange,enrange,cmap=None):
             tot_den = newsystem.tot_density()
             y_tot.append(tot_den)
             # disable the band with zero density or below
-            idx_disabled = []
+            # idx_disabled = []
             # if any band has a density <=0 then disable it
-            for idx,den in enumerate(den_slice):
-                if den <= 0:
-                    newsystem.get_band(idx).disable()
-                    idx_disabled.append(idx)
+            # for idx,den in enumerate(den_slice):
+            #     if den <= 0:
+            #         newsystem.get_band(idx).disable()
+            #         idx_disabled.append(idx)
             # calculate the chemical potential for the new system        
             mus = [newsystem.mu(enrange, B, args.nmax, args.angle, [SIGMA_COND if band.get('is_cond') else SIGMA_VAL for band in newsystem.get_band('a')],args.zll) for B in bfrange]
             # calculate the dos for each band at each chemical potential along the B field axis
@@ -265,9 +266,9 @@ def dos_map(args,newsystem,bfrange,enrange,cmap=None):
             y_databdl.append(to_append)
             newsystem.databdl_write_csv(args.fnm,bfrange,to_append,'dosm')
             # enable the disabled band again for next loop
-            if idx_disabled:
-                for idx in idx_disabled:
-                    newsystem.get_band(idx).enable()
+            # if idx_disabled:
+            #     for idx in idx_disabled:
+            #         newsystem.get_band(idx).enable()
         make_2d_dos_map(bfrange,y_tot,y_databdl,cmap,ax=ax)
         system_stamp_csv(args)
         super_save(args.fnm,args.dir)

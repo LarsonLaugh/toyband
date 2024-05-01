@@ -1,0 +1,5 @@
+,density,is_cond,is_dirac,gfactor,vf,dparam,meff,spin,active,Ebb
+0,1000000000000000,True,True,1.8,500000.0,8.331318427999999e-40,,,True,-5.921335218e-21
+1,3000000000000000,True,True,1.8,500000.0,8.331318427999999e-40,,,True,-1.026932817e-20
+2,0,False,False,6.0,,,0.2,1.0,True,0.0
+3,0,False,False,6.0,,,0.2,-1.0,True,0.0
